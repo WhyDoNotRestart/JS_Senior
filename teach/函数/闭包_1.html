@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+function a(){
+    let n=0;
+    function sum(){
+        console.log(++n);
+    }
+    sum()
+}
+a()    //1
+a()    //1  
+console.log('===');
+
+function a_0(){
+    let n=23
+   
+ return  function sum(){
+       let m=21;
+       function show(){
+        console.log(++m);
+       }
+       show()
+    }
+}
+let b0=a_0()    //1
+let b1=a_0()    //1  
+console.log(b1.toString);
+b0()  //22
+b0()  //22
+b1()  //22
+b1()  //22
+
+
+/*
+    多次调用不会累加  
+    每一次的调用都会创建一个a模块 
+    里面都有一个n值 一次调用完就释放掉
+    反复调用都是一个新的值
+*/
+console.log('-------');
+
+
+function a1(){
+    let n=10;
+  return  function sum(){
+        console.log(++n);
+    }
+}
+let receive_1=a1()
+let receive_11=a1()
+console.log(receive_1.toString());
+console.log(receive_1===receive_11);
+receive_1(); //11
+receive_1() //12
+
+receive_11() //11
+receive_11() //12
+
+/*
+返回的是内层函数,而内层函数又与外层函数建立关系
+内存函数与外层函数有关联部分也同时被返回保留下来
+a1() 每执行一次都会创造新的内存地址
+
+*/
+
+console.log('----');
+
+
+
+    </script>
+</body>
+</html>

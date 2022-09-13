@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function People(name, action) {
+            this.name = name;
+            this.action = action
+            console.log('====');
+            console.log(this);//people
+        }
+
+        function Student(name, action, position) {
+            People.call(this, name, action)
+            this.position = position
+            console.log(this); //student
+        }
+        var dxr=new Student('戴新瑞','走心','班长')
+        var people=new People('人类','吃');
+        console.log(dxr);
+        console.log(people);
+    </script>
+
+</body>
+
+</html>

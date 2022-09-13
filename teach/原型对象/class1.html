@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        function People(name,age,sex){
+            this.name=name;
+            this.age;
+            this.sex=sex;
+            //没创建一个对象都会有该函数浪费资源 但是每个对象的该方法有不同
+            // this.action=function(){
+            //     console.log('吃');
+            // }
+        }
+        People.prototype.sing=()=>console.log('吃');
+        //每一个构造函数都有prototype对象 该对象的所有属性和方法都会被对象实例所共享
+        //一般化公共属性定义到构造函数 公共方法放到原型对象
+            //每个实例对象都有一个—__proto__属性  里面是一个对象  
+            //通过存储地址 指向构造函数原型对象prototype 从而共享公共方法
+            
+            var wgg=new People('王乖乖',18,'女')
+            var dxr =new People('戴新瑞',19,'男');
+            dxr.sing();
+            console.log(wgg.action===dxr.action);         //true
+            console.log(People.prototype===wgg.__proto__);//true
+            console.log(wgg);              //People
+            console.log(wgg.__proto__);    //obj
+            console.log(typeof wgg.__proto__ );  //obj
+
+    </script>
+    
+</body>
+</html>
+
+
+<script>
+/*
+prototype(对象属性)原型对象： 所有属性和方法被构造函数的每一个实例继承 
+__proto__ 原型链：JS在创建对象的时候，都有一个叫做proto的内置属性，用于指向创建它的函数对象的原型对象prototype。
+
+
+
+*/
+    
+</script>

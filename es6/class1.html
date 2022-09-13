@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+
+
+<!-- let -->
+    <script>
+      //  外层for循环只是给每个item绑定了点击事件，
+                //然后点击事件是异步任务，for已经执行完了
+        var div=document.querySelectorAll('div')
+        // for (var i = 0; i < div.length; i++) {
+        //     console.log(i);
+        //     div[i].onclick=function(){
+        //         console.log(i);  //8
+        //         var value=div[i].innerHTML
+        //         console.log(value);
+        //     }
+        // }
+console.log('---');
+        for (let i = 0; i < div.length; i++) {
+            console.log(i);
+            div[i].onclick=function(){
+                console.log(i);  //点几位几
+                var value=div[i].innerHTML
+              //  console.log(value);
+            }
+        }
+    
+    </script>
+
+
+<!-- const -->
+    <script>
+           /*
+    声明常量
+        一般命名为答谢 
+        块级作用域
+        对象和数组指的是地址不能修改
+    */
+
+    </script>
+
+<!-- 结构赋值 -->
+<script>
+      //如果是对象 就是{}
+      var s=['王乖乖','戴新瑞','黄脸婆','背锅侠']
+        let [a1,a2,a3,a4,a5] =s;
+        let [b1,b2,...b3] =s1;
+        // ...b3 表示多个参数
+        
+        console.log(a1);
+        console.log(a2);
+        console.log(a3);
+        console.log(a4);
+        console.log(a5);
+        /*
+         王乖乖
+          戴新瑞
+          黄脸婆
+          背锅侠
+         undefined
+        */
+</script>
+
+<!-- 字符串模板 -->
+<script>
+    //拼接 
+     let action='拉肚子'
+     let out =`${action}+是你没用对`
+     console.log(out);
+
+ </script>
+</body>
+
+</html>

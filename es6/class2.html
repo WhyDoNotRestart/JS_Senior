@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 剩余参数 -->
+    <script>
+        function fu(a1,...args){
+            console.log(a1,);
+            console.log(args)/
+        }
+        fu(1,5,4,7,8,9,6,4,10,24,54,61,24,35)
+    </script>
+
+    <!-- 扩展参数 -->
+    
+    <script>
+        // 数组合并
+        let arr=['a','b','c','d']
+        console.log(...arr);   //相当于去掉[] 输出a b c d
+        
+        let arr1=[1,2,3,4,5]
+        let arr2=[6,7,8,9,10]
+        let arr3=[...arr1,...arr2]
+        let arr4=[arr1,arr2]
+        arr1.push(...arr2)
+        console.log(arr3)   //里面有十个元素  为俩数组的元素
+        console.log(arr4); //里面有俩个元素 为数组  数组里面各有五个
+
+    </script>
+
+    <!-- set 用于去重 -->
+    <script>
+        let my =new Set(['a','a','b','v'])
+        let array=[...my]
+        console.log(array);
+    </script>
+</body>
+</html>

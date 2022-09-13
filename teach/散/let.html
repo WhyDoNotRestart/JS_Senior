@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮一</button>
+    <button>按钮二</button>
+    <button>按钮三</button>
+    <button>按钮四</button>
+
+
+    <!-- <script>
+        //var  仅仅在函数里面有作用域
+          //如果外面未声明  仅仅在函数里面声明  外部掉用不了
+        //var age=1
+        function a(){
+          var  age=10
+            console.log(age);
+        }
+        a()   //10
+        console.log(age);   //1
+
+    </script> -->
+    <!-- <script>
+        //使用立即调用函数同样实现
+        (function a(){
+          var  age=10
+        console.log(age);
+        })()
+        console.log(age); //undefined
+    </script> -->
+    <script>
+        var but = document.getElementsByTagName('button')
+        for (let i = 0; i < but.length; i++) {
+            // but[i].addEventListener('click',()=>{
+            //     console.log(i); //使用var  为4 点击事件发生在五次循环之后
+            // })
+            (function (i) {
+                but[i].addEventListener('click', () => {
+                    console.log(i); //正常 当使用let   i为作用域里面的i
+                })
+            })(i)
+        }
+    </script>
+
+    <script>
+        // var tmp = 123;
+        // if (true) {
+        //     tmp = 'abc'; // ReferenceError
+        //     let tmp;
+        // }
+        let [x, y, ...z] = ['a'];
+        console.log(z);
+    </script>
+</body>
+
+</html>

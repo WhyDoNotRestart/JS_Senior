@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //使用call 和apply改变this指向
+        //(this要指向的，参数)  call直接写    
+        // apply放在数组 但是只相当穿一个参数  相当于arguments
+
+
+
+        var o = {}
+
+        function fn(arr, a, b, c) {
+            console.log(this);
+            console.log(arr); //数组全部打印
+            console.log(arr[1]);
+            console.log(a);
+            console.log(Math.max.apply(null, arr));
+            //可以将一个数组默认的转换为一个参数列表
+        }
+
+        fn.call(o, [1, 2, 7, 5, 6])
+        let arr1 = [1, 2, 7, 5, 6];
+        let arr2 = [4, 7, 5, 4, 6, 8, ]
+        Array.prototype.push.apply(arr1, arr2)
+        console.log(arr1);
+    </script>
+    <script>
+        var that;
+        var that1
+        var Person1 = function () {
+            that=this
+            this.name = 'linxin';
+          //  console.log(this); 方法里的this指向实例对象
+        }
+        var Person2 = function () {
+            this.getname = function () {  //实例对象
+                console.log(this.name);  //实例对象
+            }
+            Person1.call(this); //person1 的this 指向为person2的实例
+        }
+        var person = new Person2();
+        person.getname(); // linxin
+
+
+
+        console.log(that);  //person2
+        var Student =function(){
+            this.name='wgg',
+            this.action=function(){
+                console.log(this.name);
+            }
+        }
+        var s1=new Student();
+            s1.action();
+    </script>
+</body>
+
+</html>

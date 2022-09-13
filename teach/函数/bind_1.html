@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>确定</button>
+    <button>确定</button>
+    <button>确定</button>
+    <button>确定</button>
+
+<script>
+
+    //在正常是在定时器用buttons[i]改变按钮状态
+    //setTimeout是异步执行的，每一次执行一次for循环时，
+        //setTimeout都会执行一次，但是里面的函数却不会执行，
+        //而是被放在了任务对列里面，
+        // 也就是说只有主线上的全部执行完才会执行任务队列里的任务
+var buttons=document.querySelectorAll('button')
+for(let i=0;i<buttons.length;i++){
+     buttons[i].addEventListener('click',function(){
+         this.disabled=true;
+        setTimeout(function(){
+            this.disabled=false;
+        }.bind(this),3*1000)
+     })
+}
+
+</script>
+
+</body>
+
+</html>

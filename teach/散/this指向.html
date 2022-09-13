@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        var name = 'wgg'
+        var obj = {
+            funnc() {
+                console.log(this + '箭头函数外层');// [object Object]箭头函数外层
+                const fuun = () => {
+                    console.log(this);       //fuuc
+                    console.log(this.name); //undefined
+                }
+                return fuun;
+            }
+        }
+        obj.funnc()()
+        name = 'wcc'
+    </script> -->
+    <script>
+   /*
+   在对象方法中 this指向此方法拥有者
+   在函数中指全局对象
+   
+   f()     执行f函数  返回子函数
+   f()()   执行子函数  返回孙函数
+
+   
+   */
+
+
+        var i=1;
+function f(){
+    i++;
+    console.log('被执行');
+    console.log("打印 :  "+i) // 2
+    return k;
+    function k() {
+        console.log('执行k');
+        return "I love you!"
+    }
+}
+f(); //打印2
+console.log('--');
+console.log(f()); //打印3  k()
+console.log("---")
+f()()   //打印4
+console.log('----');
+console.log(f()());    //打印5  i love you
+
+let obj ={
+    run:function(){
+        console.log(this);
+        return ()=>
+        {console.log(this);} //箭头函数this向外寻找  
+                             //箭头函数外层第一个普通函数的this
+    }
+}
+obj.run()
+console.log('---');
+console.log(obj.run());
+console.log('---');
+obj.run()()
+console.log('---');
+console.log(obj.run()());
+
+    </script>
+
+</body>
+
+</html>

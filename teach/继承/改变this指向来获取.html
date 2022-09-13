@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var Person1 = function () {
+            that = this
+            this.name = 'linxin';
+        }
+        var Person2 = function () {
+            this.getname = function () { //实例对象
+                console.log(this.name); //实例对象
+            }
+            Person1.call(this); //person1 的this 指向为person2的实例
+        }
+        var person = new Person2();
+        person.getname(); // linxin
+    </script>
+
+    <!-- 从上面我们看到，Person2 实例化出来的对象 person2
+        通过 getname 方法拿到了 Person1 中的 name。
+        因为在 Person2 中，Person1.call(this) 的作用就是
+            吧Preson1的this改为Person2的this  
+            在Person1中的this.name  相当于写在Person2中
+            那么 Person2 就有了 Person1 中的所有属性和方法了，相当于 Person2 
+            继承了 Person1 的属性和方法。 -->
+
+</body>
+
+</html>

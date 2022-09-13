@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        function People(name,age,sex){
+            this.name=name;
+            this.age;
+            this.sex=sex;
+        }
+
+     //   People.prototype.sin=()=>console.log('吃');
+     /*
+     使用 .sing  是在对象里面添加方法
+     而下面的={}  将原有的 prototype对象给覆盖掉  指向发生改变  
+     覆盖后 没有constructor的属性  在下面输出不能指回构造函数
+     在对象里面手动添加   
+     
+     */
+        People.prototype={
+        constructor:People,   //指回构造函数
+        sing:()=>console.log('吃'),
+        action:()=>console.log('nihao a '),
+        }
+        var wgg=new People('王乖乖',18,'女')
+        var dxr =new People('戴新瑞',19,'男');
+
+        console.log('-=-');
+        console.log(People.prototype);  // prototype中的函数
+        console.log(People.prototype.constructor)    //obj
+        console.log('--');
+        console.log(wgg.constructor);             //obj
+        console.log(wgg.constructor);      //obj
+        console.log(wgg.constructor.constructor);  //function
+        console.log('--');
+        //对象原型__proto__和构造函数prototype 里面都有一个属性constructor
+          //constructor用于记录该对象引用哪个构造函数 起指回作用
+        console.log(People.prototype.constructor);  //obj
+        console.log(wgg.__proto__.constructor);     //obj
+    </script>
+</body>
+</html>

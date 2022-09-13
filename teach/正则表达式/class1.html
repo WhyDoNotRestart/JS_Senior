@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //对字符串进行匹配 替换 过滤等
+
+        var rg=/123/
+
+        //test（） 检查 返回true false
+        console.log(rg.test(4564123)); //true
+
+        //字符
+        /*
+        ^ 开始
+        $ 结束
+        
+        */
+        console.log('---');
+        var rg=/123/ //包含123
+        var rg1=/^123/ //以123开头
+        var rg2=/123$/   //以123结尾
+        var rg3=/^123$/   //必须是123
+        console.log(rg2.test(12346545461231));
+        console.log(rg1.test(1234654546123));
+        console.log(rg.test(1234654546123));
+
+    </script>
+    
+</body>
+</html>

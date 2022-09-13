@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+<!-- promise基本使用 -->
+    <script>
+
+let timeStamp = new Date().getTime(); // 获得时间戳
+let time= new Date(timeStamp).toTimeString().slice(0,8); // '13:44:41'
+console.log(time);
+
+
+
+var hour = 9;
+// bad
+hour = String(hour).length > 1 ? hour : '0'+hour;
+// good
+hour = String(hour).padStart(2, '0');
+// or
+hour = ('00'+hour).slice(-2);
+console.log(hour);
+
+// new Promise((resolve, reject) => {
+//     setTimeout(()=>{
+//         console.log('hello');
+//         console.log('hello');
+
+//         setTimeout(()=>{
+//             console.log('vue');
+//             console.log('vue');
+//             setTimeout(()=>{
+//                 console.log('java');
+//                 console.log('java');
+//             },1000)
+//         },1000)
+//     },1000)
+// })
+
+// new Promise((resolve, reject) => {
+//     setTimeout(()=>{
+//         resolve('给then传入参数')
+//     },1000)
+// }).then((data)=>{
+//     console.log(data);
+// })
+
+
+console.log('-------------');
+/*
+
+ const promiseClick =()=>{
+ 	 console.log('点击方法被调用')
+ 	 let p = new Promise(function(resolve, reject){
+ 		//做一些异步操作
+ 		setTimeout(function(){
+ 				console.log('执行完成Promise');
+ 				resolve('要返回的数据可以任何数据例如接口返回数据');
+ 			}, 2000);
+ 		});
+         return p
+ 	}
+     promiseClick().then(function(data){
+     console.log(data);
+     //后面可以用传过来的数据做些其他操作
+     //......
+ });
+*/
+
+/*
+ test().then(function(data){
+     console.log(data);
+     return runAsync2();
+ })
+ .then(function(data){
+     console.log(data);
+     return runAsync3();
+ })
+ .then(function(data){
+     console.log(data);
+ });
+
+*/
+
+
+
+
+//将promise 封装在函数里面返回promise对象  可以使用promise的then catch 和all方法
+
+ function p(){
+ 		let p = new Promise(function(resolve, reject){
+ 			setTimeout(function(){
+ 				var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+ 				console.log('随机数生成的值：',num)
+ 				if(num<=10){
+ 					 resolve(num  )            
+ 				}
+ 				else{
+ 					 reject('数字太于10了即将执行失败回调' )        
+ 				}
+ 			}, 2000);
+ 		   })
+ 		   return p
+ 	   }
+ 	p().then(
+         //resolve  成功调用
+ 		function(data){
+ 			console.log('resolved成功回调');
+ 			console.log('数字大于10，成功回调接受的值：',data);
+ 		}, 
+         //reject  失败调用
+ 		function(reason){
+ 			console.log('rejected失败回调');
+ 			console.log('失败执行回调抛出失败原因：',reason);
+ 		}
+ 	);	
+
+
+
+// then里面的数据从 resolve中传入
+
+/*
+function promiseClick(){
+		let p = new Promise(function(resolve, reject){
+			setTimeout(function(){
+				var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+				console.log('随机数生成的值：',num)
+				if(num<=10){
+					resolve(num);
+				}
+				else{
+					reject('数字太于10了即将执行失败回调');
+				}
+			}, 2000);
+		   })
+		   return p
+	   }
+ 
+	promiseClick()
+	.then(
+		function(data){
+			console.log('resolved成功回调');
+			console.log('成功回调接受的值：',data);
+		}
+	)
+	.catch(
+        function(reason, data){
+		console.log('catch到rejected失败回调');
+		console.log('catch失败执行回调抛出失败原因：',reason);
+	});	
+
+*/
+
+</script>
+
+    <!-- 链式调用 -->
+    <!-- //  promise().then().catch()
+    //   Promise((resolve, reject) => {a }).then(res => { return  Promise((resolve, reject) => { a}) })  .then(res => { return  Promise((resolve, reject) => {a })})  .then(res => { a}) -->
+
+    <script>
+        /*
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {reject('error message')}, 1000)
+        }).then(res => {console.log(res) }).catch(err => {console.log('err', err) })
+         //   promise().then().catch()
+
+
+        const pp = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('a')
+                }, 1000)
+            })
+            .then(res => {
+                console.log('res1', res) //1秒后打印 a
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve(res + 'a')
+                    }, 1000)
+                })
+            })
+            .then(res => {
+                console.log('res', res) //2秒后打印 aa
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve(res + 'a')
+                    }, 1000)
+                })
+            })
+            .then(res => {
+                console.log('res3', res) //3秒后打印 aaa
+            })
+
+
+
+
+            const pp1 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('a')
+                }, 1000)
+            }).then(res => {
+                console.log('res1', res) //1秒后打印 a
+                return new Promise((resolve, reject) => {
+                    resolve(res + 'a')
+                }).then((res)=>{
+                    console.log('这是return里面的then'+res);
+                })
+            }).then(res => {
+                console.log('res', res) //2秒后打印 aa
+                return Promise.resolve(res+'a')
+            }).then(res => {
+                console.log('res3', res) //3秒后打印 aaa
+            })
+
+
+*/
+        console.log('--------------');
+
+        /*        const pp11 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('a')
+                }, 1000)
+            })
+            .then(res => {
+                console.log('res1', res) //1秒后打印 a
+                return new Promise((resolve, reject) => {
+                    resolve(res + 'a')
+                })
+                // .then((res)=>{
+                //     console.log('这是return里面的then'+'+'+res);
+                // })
+            })
+            .then(res => {
+                console.log('res', res) //2秒后打印 aa
+                return Promise.resolve(res+'a')
+                })
+            .then(res => {
+                console.log('res3', res) //3秒后打印 aaa
+                return res+'a'
+            }).then((res)=>{
+                console.log('结束');
+            })
+
+*/
+
+
+        // const pp111 = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve('a')
+        //     }, 1000)
+        // })
+        // .then(res => {
+        //     console.log('res1', res) //1秒后打印 a
+        //     return new Promise((resolve, reject) => {
+        //         resolve(res + 'a')
+        //     })
+        //     // .then((res)=>{
+        //     //     console.log('这是return里面的then'+'+'+res);
+        //     // })
+        // })
+        // .then(res => {
+        //     console.log('res', res) //2秒后打印 aa
+        //     return Promise.reject(res+'a')
+        //     })
+        // .then(res => {
+        //     console.log('res3', res) //3秒后打印 aaa
+        //     return res+'a'
+        // }).then((res)=>{
+        //     console.log('结束');
+        // }).catch(()=>{
+        //     console.log('如果返回是reject，则直接跳到catch执行 并且继续往下执行 ');
+        // }).then(()=>{
+        //     console.log('你好');
+        // })
+    </script>
+
+    <!-- promise all -->
+    <script>
+        /*
+如果需要拿到俩个网络请求 但是不能保证两个请求的先后
+
+*/
+        /*
+        let flag=false
+        let flag1=false
+        // 请求一
+        $ajax({
+            url:'',
+            success:function(){
+                console.log('结果一');
+                flag=true
+                handleFlag()
+            }
+        })
+        //请求二
+        $ajax({
+            url:'',
+            success:function(){
+                console.log('结果二');
+                flag1=true
+                handleFlag()
+            }
+        })
+
+        function handleFlag(){
+            if(flag &&flag1){
+
+            }
+        }
+
+        */
+
+     /*   Promise.all([
+            new Promise((resolve, reject) => {
+                $ajax({
+                    url: '',
+                    success: function (data) {
+                        resolve(data)
+                    }
+                })
+            }),
+            new Promise((resolve, reject) => {
+                $ajax({
+                    url: '',
+                    success: function (data) {
+                        resolve(data)
+                    }
+                })
+            })
+            //当两个请求都完成后执行then  results为数组存放数据
+        ]).then(results=>{
+            results[0],
+            results[1]
+        } )*/
+
+
+      Promise.all([
+      new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            resolve({name:'dxr',age:19,action:'必杀技'})
+        },2000)
+      }),
+      new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            resolve({name:'wgg',age:'0',action:'none'})
+        },1000)
+      })
+      ]).then(resolves=>{
+        console.log(resolves);
+      })
+
+
+
+    </script>
+
+</body>
+
+</html>

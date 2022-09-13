@@ -1,0 +1,41 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        <button>点击</button>
+
+        <script>
+            //bind 改变this指向 但是不调用  apply call 改变的同时并且调用函数
+            //bind 返回改变后的函数
+             let o={
+                name:'wgg'
+             }
+             function fn(){
+                console.log(this);
+            }
+            var fn1 = fn.bind(o)
+            fn();
+            fn1()
+
+        </script>
+        <script>
+            let button = document.querySelector('button')
+            button.addEventListener('click', function () {
+                this.disabled = true;
+                //  setTimeout(()=>this.disabled=false,3*1000)
+                setTimeout(function () {
+                    this.disabled = false;
+                }.bind(this), 3 * 1000)
+            })
+        </script>
+    </body>
+
+    </html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>王乖乖</li>
+        <li>王啃啃</li>
+        <li>请吃饭</li>
+        <li>啥</li>
+    </ul>
+    <script>
+
+
+function f1() {
+    var f1=10;
+    function f2(){
+        var f2=20
+        console.log(f1);
+    }
+}
+//--------------------------------------
+function a1(){
+     var a_1 =1
+     function a2(){
+        a_2=2
+        console.log(a1);
+     }
+     return a2
+}
+var receive_function=a1();
+receive_function()
+//通过在函数内部返回
+
+    </script>
+    <script>
+
+
+
+       function a1() {
+        let n=1;
+     return  function sum(){
+            console.log(++n);
+         }
+       }
+       let m=a1();
+       let n =a1()
+       m();     m()   // 2   3
+       n()//2
+       console.log('----');
+       //通过返回函数sum   而sum获取到n   直接将n返回到作用域外面
+
+       function a() {
+        let n=1;
+      function sum(){
+            console.log(++n);
+         }
+         console.log(typeof sum);
+         return sum()
+       }
+       let m1=a();
+       m1();  //2  
+  </script>
+    
+</body>
+</html>
+<script>
+    /* 闭包的概念：
+     通俗理解：
+          函数里面嵌套函数，该内部函数会继承上一级函数的变量值。
+          当在外部调用时，如果闭包函数使用了上一级的值，它不会在函数调用结束而被垃圾回收
+          机制回收掉。
+*/
+
+//第一种情况(闭包)
+function addMethod() {
+  let num = 99;
+
+  //全局对象中
+  add = function() {
+    num++;           //引入外部变量num
+  };
+  return function answer() {
+    console.log(num);
+  }
+}
+//测试
+var test = addMethod();  //获取的return的返回值
+console.log(test.toString());
+console.log('-----------------');
+test();  //执行该函数，返回的值为99
+add();   //调用，执行num++
+test();  //结果100
+add();   //调用，num++
+test();  //结果101
+
+
+
+
+
+</script>

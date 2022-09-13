@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var that;
+        var that_1
+
+        function Student (name,age){
+            this.name=name;
+            this.age=age
+        }
+        Student.prototype={
+            constructor:Student,
+            action:function(){
+                console.log('nihao');
+                that=this
+            }
+        }
+        var dxr=new Student('戴新瑞',19);
+        dxr.action();
+        console.log(that);
+        //在构造函数 和原型对象里面的this都指向实例对象
+
+
+    </script>
+    
+</body>
+</html>

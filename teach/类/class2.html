@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class father{
+            constructor(x,y){
+                this.x=x;
+                this.y=y;
+            }
+            sum(){
+                console.log( this.x+this.y);
+            }
+            sum1(x,y,z){
+                console.log(x+y+z);
+            }
+            
+        }
+        class Son extends father{
+            constructor(x,y){
+                // this.x=x;
+                // this.y=y;
+                    super(x,y) //调用父类构造参数并传值
+            }
+            action(){
+                console.log(this.x,this.y); //使用super后省略this也可以传参
+            }
+        }
+        var son =new Son(1,2);
+        son.sum(); 
+        son.sum1(1,2,3)  
+        son.action();
+        // 子类虽然调用父类方法sum 但是 this指向的是父类中的x与y   
+        // 使用super 将子类中constru 中的参数穿给父类后然后再由子类调用
+                //  子类的实例的实参传给constructor  在传给super  super使子类先调用父类的constructor 传参给方法中的this 
+    </script>
+    
+</body>
+</html>

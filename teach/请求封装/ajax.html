@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button></button>
+    <script>
+        //使用get传参 data为对象  url？a=1&b=1
+        function getParams(data) {
+            let arr = []
+            for (let key in data) {
+                arr.push(`${key}=${data[key]}`)
+            }
+            return arr.join('&')
+            //  console.log(arr.join('&'));
+            //limit=20&age=20
+        }
+
+
+
+        //请求方式，地址，参数，参数类型
+        //options 为一个对象
+        function ajax(options) {
+            //创建XMLHttpRequest对象
+
+            const xhr = new XMLHttpRequest()
+            //初始化参数内容
+            options = options || {}
+            //传入get/post  需要大写
+            options.type = (options.type || 'GET').toUpperCase()
+            //数据类型  一般化默认是  JSON
+            options.dataType = options.dataType || 'json'
+            //接收地址参数
+            const params = options.data
+            //发送请求
+            if (options.type == 'GET') {
+                //第三个参数async： true 异步    false同步
+                xhr.open('GET', options.url + "?" + getParams(params), true)
+                xhr.send()
+            } else if (options.type == 'POST') {
+                xhr.open('GET', options.url, true)
+                xhr.send(params)
+            }
+            //接收请求  监听
+            xhr.onreadystatechange = function () {
+                //整个请求过程完毕
+                if (xhr.readyState === 4) {
+                    //如果请求成功
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        //responseText  字符串形式响应数据
+                        //responseXML XML形式响应数据
+                        options.success(xhr.responseText, xhr.responseXML)
+                    } else {
+                        options.fail('参数错误' + status)
+                    }
+                }
+            }
+        }
+
+        ajax({
+            type: "get",
+            dataType: 'json',
+            data: {
+                limit: 10,
+                age:20
+            },
+            url: 'http://127.0.0.1:4523/m1/1342827-0-default/axios',
+            success: function (text, xml) {
+                console.log(text);
+                //转为对象
+                console.log(JSON.parse(text));
+            },
+            fail: function (status) {
+                console.log(status);
+            }
+        })
+
+    </script>
+</body>
+
+</html>

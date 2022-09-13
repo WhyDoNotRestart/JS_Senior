@@ -1,0 +1,99 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+    用户名:<input  type="text">
+    <input type="button" value="确定">
+    <script>
+        var input=document.querySelectorAll('input')
+        var exam=/^[a-z]{6,16}$/
+        input[0].addEventListener('input',function(){
+        var text=input[0].value
+        var flag=exam.test(text)
+        console.log(flag);
+        if(flag){
+            input[1].disabled=false
+            console.log('正确');
+        }else{
+            input[1].disabled=true
+            console.log('不正确');
+        }
+        })
+       
+        
+    </script>
+        
+    </input>
+      
+        <script>
+            //对字符串进行匹配 替换 过滤等
+            var rg = /123/
+            //test（） 检查 返回true false
+            console.log(rg.test(4564123)); //true
+            //字符
+            /*
+            ^ 开始
+            $ 结束
+            */
+            console.log('---');
+            var rg = /123/ //包含123
+            var rg1 = /^123/ //以123开头
+            var rg2 = /123$/ //以123结尾
+            var rg3 = /^123$/ //必须是123
+            console.log(rg2.test(12346545461231));
+            console.log(rg1.test(1234654546123));
+            console.log(rg.test(1234654546123));
+            console.log('-----');
+        </script>
+        
+        <script>
+            //正则表达式识别大小写
+            //  /asd/  包含asd  
+            // /[asd]/   只要含有[]里面的内容即可
+            // /^[asd]$/    只有是a 或者只有b 或者只有c  只能为单个 多选一
+            // [a-z] 表示 a到z
+            // [a-zA-Z0-9] 表示a到z A到Z 0到9
+            //  [^]表示取反
+            var test=/[asdf]/
+            console.log(test.test("asee"));
+            var re = /[asd]/
+            re1 = /[a-zA-Z0-9]/
+            console.log(re.test('ab'));
+            console.log(re1.test('s5.---'));
+            console.log('-----');
+        </script>
+
+        <script>
+            /*
+            * 表示重复0或多次
+            +  1次或多次
+            ？ 0次或一次
+            {n} n次
+            {n,} n或更多次
+            {n，m} 重复n到m 次 [3,5]
+            */
+
+            var re=/^a*$/
+            var re1=/^a{3}$/
+            var re2=/^a{3,5}$/
+            console.log(re.test('aaaaaa'));
+            console.log(re2.test('aaaaa'));
+            console.log('-----');
+        </script>
+        <script>
+            //在a到z 0到9 输出4到6次
+            var sw=/^[a-z0-9]{4,6}$/
+            console.log(sw.test('aa99999'));
+
+
+        </script>
+    </body>
+
+    </html>

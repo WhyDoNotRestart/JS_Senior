@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function People(name,action){
+            this.name=name;
+            this.action=action
+        }
+        function Student(name,action,position){
+            People.call(this,name,action)
+            this.position=position
+        }
+
+
+
+
+
+        //继承属性
+        var dxr=new Student('戴新瑞','走心','班长')
+        var people=new People('人类','吃');
+        console.log(dxr);
+        console.log(people);
+        /*在子类通过call 调用父类的构造方法 并且改变搞糟方法中的this指向为子*/
+
+ //继承方法
+
+        console.log(Student.prototype);
+        Student.prototype.action=function(){
+            console.log('你好');
+        }
+        Student.prototype.read=function(){
+            console.log('做数学题');
+        }
+        People.prototype.jump=function(){
+            console.log('一米');
+        }
+
+    /*
+        Student.prototype=People.prototype
+        Student.prototype.exam=function(){
+            console.log('学生要考试');
+        }
+        console.log(People.prototype);
+        将子类与父类的原型对象相同
+        改变子类的指向地址 
+        子类会被父类覆盖掉 并且
+        添加到子类共享方法区的专有方法也会被添加到父类共享区里面
+
+
+    */
+
+
+        console.log(Student.prototype);
+        Student.prototype=new People();
+        //将子类的原型对象指向父类的实例
+        Student.prototype.constructor=Student
+        /*相当于重新开辟一处空间 
+
+        并且 父类的实例对象可以访问父类的原型对象 */
+
+        //修改之后的Student.prototype 指向父类的实例
+            // 但Student.prototype.constructor 指向的是父类的构造函数
+        
+        Student.prototype.read_1=function(){
+            console.log('做数学题');
+        }
+        console.log(Student.prototype);
+        console.log(Student.prototype.constructor);
+        /*
+        Student.prototype=new People();
+        将子类prototype 指向父类的实例  
+            之前往子类prototype添加的方法被覆盖
+            只能覆盖后继续
+        
+        */
+        
+    </script>
+    
+</body>
+</html>

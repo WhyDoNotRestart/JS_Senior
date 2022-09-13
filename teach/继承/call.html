@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn (a){
+            console.log(a);
+            console.log(this);
+        }
+        
+         var arr={
+            name:'戴新瑞'
+         }
+         fn.call(arr,'王乖乖')
+         /*
+         call(obj,e1,e2,e3,......)
+         obj 改变的this指向   
+         e为调用的函数的参数     
+         */
+    </script>
+    
+    
+</body>
+</html>

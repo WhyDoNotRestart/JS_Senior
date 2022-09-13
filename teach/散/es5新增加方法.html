@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 数组 -->
+    <script>
+        //  forEach map filter some every
+                        // 数组值  当前索引 数组本身（可省）    回调函数
+ 
+ 
+        var arr=[1,5,7,6,7]
+        var sum=0
+        //遍历
+        arr.forEach((value,index,arr) => {
+            // console.log('数组的值：'+value);
+            // console.log('数组的索引：'+index);
+            // console.log('数组本身：'+arr);
+            // sum+=value
+            // console.log(sum);
+            console.log(value);
+           
+        });
+        /*
+        forEach不能像for一样被终止  
+        */
+
+        //map
+            //修改数组的每一项并且不影响原数组
+            const arr1=arr.map(item=>item*2);
+            console.log(arr1);
+
+        //some
+            //检测数组中是否有满足的条件 找到第一个就停止 找到就返回true
+            arr.some((index,self)=>{
+                if(index%2==0){
+                  console.log(); self[index]
+                  return true
+                }
+            })
+        //every
+            //需要所有相同才会返回    
+            var boolean1=arr.every(index=>{
+                return index%2==0
+            })
+            console.log(boolean1);
+            
+    </script>
+    
+
+    <!-- 字符串 -->
+    <script>
+
+        // trim 去左右的空格空格
+        let i='   你好，再  见    '
+        let b=i.trim();
+        console.log(i);
+        console.log(b);
+    </script>
+
+    <!-- 对象 -->
+    <script>
+        //Object.keys(obj)获取对象键 返回一个数组
+  // Object.defineProperty(obj,'obj.attribute'{})
+  obj={
+    name:'王乖乖',
+    age:18,
+    action:'最初'
+  }
+  let array=Object.keys(obj);
+  console.log(array);
+  Object.defineProperty(obj,'name',{
+    value:'戴新瑞',
+    writable:false , //不允许在修改
+  });
+  console.log(obj);
+
+    </script>
+
+
+</body>
+
+</html>

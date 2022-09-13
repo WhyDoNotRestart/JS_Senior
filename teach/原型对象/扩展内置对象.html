@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(Array.prototype);
+        //查看Array的原型对象（共享方法区）
+        Array.prototype.sum=function(){
+           var  sum=0
+            for(let i =0;i<this.length;i++){
+                sum += this[i]
+            }
+            return sum;
+        }
+        var arr =[1,40,51,60,4];
+        console.log(arr.sum());
+
+
+
+
+    </script>
+    
+</body>
+</html>

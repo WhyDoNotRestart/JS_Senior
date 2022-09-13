@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <button>点击</button>
+ 
+    <script>
+         var that;
+        class people{
+            constructor(name,age){
+                //这里面this 指的是实例对象  s1
+                this.name=name,
+                this.age=age
+                this.button=document.querySelector('button'),
+                this.button.onclick=this.action;   //后面一个this指向button 
+                //action里面的this.name指向button  button里面没有name
+             //   this.button.onclick=this.action();  // 加上括号不点击就直接调用
+                that=this; //用全局变量储存
+            }
+            action(){
+                //方法里面this指向调用者
+                console.log(this);
+                console.log("我今天过敏了");
+                console.log(this.name);  //空   this.name 指向button
+                console.log(that);  //子类实例this 赋值给that
+                console.log(that.name);
+            }
+        }
+        var s1 =new people("王乖乖",18);
+        console.log(this);//window
+        console.log(that);
+        console.log(that.name);
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+     var boj={
+        name:'戴新瑞',
+        age:18,
+        own:{
+            name:'王乖乖',
+            age:19
+        }
+    }
+    var o={}
+
+    //浅拷贝1
+    for(var i in boj){
+        o[i]=boj[i]
+    }
+    o.own.age=18
+    console.log(boj);
+    console.log('----------------');
+    var m={}
+    //浅拷贝2
+    Object.assign(m,boj)
+    m.own.age=26
+    console.log(boj);
+
+    //  对象的引用是地址   boj对象内部开辟空间   
+   //o浅拷贝后 里面的对象own指向boj里面的对象 
+    //如果修改一个俩个都修改
+   </script>
+
+</body>
+</html>
